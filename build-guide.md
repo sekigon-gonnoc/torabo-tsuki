@@ -210,8 +210,8 @@
 | 中クリック                                                         | Mouse 3     | App, Media and Mouse |
 | 無線接続に切り替え                                                 | SEL BLE     | User                 |
 | 有線接続に切り替え                                                 | SEL USB     | User                 |
-| ペアリング済みデバイスに無線接続                                   | ADV IDn     | User                 |
-| 新しいデバイスとペアリング                                         | ADV W/O L   | User                 |
+| ペアリング済みデバイスを指定して無線接続                           | ADV IDn     | User                 |
+| 新しいデバイスまたはペアリング済みのいずれかと接続                 | ADV W/O L   | User                 |
 | 英語キーボードを日本語OSで動作させるためのオーバーライドを設定する | UJ OVR      | User                 |
 | 日本語キーボードを英語OSで動作させるためのオーバーライドを設定する | JU OVR      | User                 |
 | 上記オーバーライドを無効化                                         | D OVR       | User                 |
