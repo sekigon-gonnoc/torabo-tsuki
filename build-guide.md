@@ -272,3 +272,4 @@ Vialではできない細かい設定がしたい場合には、ファームウ�
 
 * ソースコード: [https://github.com/sekigon-gonnoc/vial-qmk/tree/dev/ble-micro-pro/keyboards/sekigon/torabo_tsuki](https://github.com/sekigon-gonnoc/vial-qmk/tree/dev/ble-micro-pro/keyboards/sekigon/torabo_tsuki)
 * [書き込み手順](https://sekigon-gonnoc.github.io/BLE-Micro-Pro/#/build_firmware?id=%e7%94%9f%e6%88%90%e3%81%97%e3%81%9f%e3%83%95%e3%82%a1%e3%83%bc%e3%83%a0%e3%82%a6%e3%82%a7%e3%82%a2%e3%82%92%e6%9b%b8%e3%81%8d%e8%be%bc%e3%82%80)
+  * ブートローダーを起動するには、電源スイッチを切った状態でQまたはPを押しながらUSBケーブルを差し込んでください。
