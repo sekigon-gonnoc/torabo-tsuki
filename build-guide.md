@@ -253,7 +253,7 @@
 ## トラブルと対策
 
 組立にあたってのトラブルで相談がある場合は[Self-Made Keyboards in Japan](https://discord.com/invite/self-made-keyboards-in-japan-376937950409392130)の[#mon-shin-forum](https://discord.com/channels/376937950409392130/635675786342432799)に投稿してください。
-投稿の前に#clinic-readmeを必ず一読してください。
+**投稿の前に#clinic-readmeを必ず一読し、問診票の記載にあたっては実施した作業を可能な限り詳細に記載してください。**
 投稿にはせきごん(_gonnoc)宛にメンションを付けていただくと投稿に気づきやすいです。
 
 ### トラックボールの動きだしが遅い
