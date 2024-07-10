@@ -219,7 +219,7 @@
 
 ### Vialでキーマップを変更する
 
-* ChromeまたはEdgeで[Vial](https://vial.rocks/)にアクセスし、Start Vialボタンをクリックしてキーボードに接続してください。
+* マスター側を有線接続した状態でChromeまたはEdgeで[Vial](https://vial.rocks/)にアクセスし、Start Vialボタンをクリックしてポップアップからtorabo-tsukiを選択して接続してください。
     * 組み立てたバージョンにあわせてレイアウトタブからレイアウトを変更してください。
 * キーマップの設定の詳細についてはQMKやBLE Micro Proのドキュメントを参照してください。
 * デフォルトではQMKのAutomatic Mouse Layerが有効になっていて、レイヤー1がマウスレイヤーになっています。
