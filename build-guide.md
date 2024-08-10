@@ -255,6 +255,9 @@
 | AML Enable     | QMKのAutomatic Mouse Layer機能の有効化                                               |
 | AML Layer      | AMLの移動先レイヤー                                                                  |
 | AML Timeout    | AMLのタイムアウト時間。単位はms                                                      |
+| AML Debounce    | AMLのデバウンス時間（マウスレイヤから復帰してから次にマウスレイヤに移動できるようにまでの時間）。単位はms                                                      |
+| AML Threshold    | AMLの移動量閾値（マウスレイヤに移動するのに必要なカーソルの移動量）。単位はカウント                                                      |
+| AML Delay    | AMLの禁止時間（マウス関係以外のキーを押してからマウスレイヤに移動できるようにまでの時間）。単位はms                                                      |
 | Scroll layer   | 指定したレイヤーでトラックボールを動かすとスクロールする                             |
 | Scroll Options | スクロール動作のオプション(Invert: 移動方向を反転、Snap: スクロール方向を縦横に制限) |
 | Scroll Divide  | ボール操作量とスクロール移動量の比                                                   |
