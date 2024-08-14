@@ -294,7 +294,7 @@ QMKの仕様として、レイヤ番号が大きいほうが優先されます�
 
 * スイッチの足が折れ曲がっていないか、BLE Micro Proへのコンスルー取り付け位置が正しいか確認してください。
 
-### 入力に遅延が発生する
+### 入力に遅延が発生する、接続がすぐ途切れる
 
 * https://sekigon-gonnoc.github.io/via-custom-ui-for-vial/ を使って、battery modeをstandardからperformanceに変更してみてください。
 
