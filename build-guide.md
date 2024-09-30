@@ -315,6 +315,10 @@ QMKの仕様として、レイヤ番号が大きいほうが優先されます�
 
 * vialでQMK Settingsを一度リセットしてください
 
+### 無線接続できない
+
+[BLE Micro ProのFAQ](https://sekigon-gonnoc.github.io/BLE-Micro-Pro/#/FAQ?id=pc%e7%ad%89%e3%81%a8%e3%81%ae%e6%8e%a5%e7%b6%9a%e3%81%8c%e4%b8%8a%e6%89%8b%e3%81%8f%e3%81%84%e3%81%8b%e3%81%aa%e3%81%8f%e3%81%aa%e3%81%a3%e3%81%9f)を参考にしてください
+
 ## ファームウェアをビルドするには
 
 Vialではできない細かい設定がしたい場合には、ファームウェアを編集・ビルドして書き込んでください。
