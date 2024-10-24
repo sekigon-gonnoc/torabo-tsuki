@@ -9,6 +9,8 @@ torabo-tsuki(トラボ付き)はトラックボール付きの無線分割キー
 |torabo-tsuki(S)を右利き用に組み立てたもの|torabo-tsuki(S)を左利き用に組み立てたもの|
 | ![](img/main-m-right.jpg) | |
 |torabo-tsuki(M)を右利き用に組み立てたもの|torabo-tsuki(M)を左利き用に組み立てたもの|
+| ![](img/main-l-right.jpg) | |
+|torabo-tsuki(L)を右利き用に組み立てたもの|torabo-tsuki(L)を左利き用に組み立てたもの|
 
 ## 入手先
 
