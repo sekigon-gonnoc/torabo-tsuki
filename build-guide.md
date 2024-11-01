@@ -277,6 +277,8 @@
 
 QMKの仕様として、レイヤ番号が大きいほうが優先されます。そのため、AMLとScroll/Fine/Roughを併用する際にはAMLのレイヤ番号が一番小さくなるように設定してください。
 
+Shift pointの調整のため現在のセンサーの値を知りたい場合は、[CLI](https://sekigon-gonnoc.github.io/BLE-Micro-Pro/#/cli)で`debug mouse`コマンドを実行してください。
+
 ### (無線接続する場合)接続デバイスとペアリングする
 
 * `ADV W/O L`に設定したキーを押してください。
