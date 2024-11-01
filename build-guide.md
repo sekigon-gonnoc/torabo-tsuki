@@ -258,6 +258,7 @@
 | Fine coef      | Fine Layerでの分解能の増加係数                                                       |
 | Rough Layer    | 指定したレイヤーでカーソルの動きを荒くする                                           |
 | Rough coef     | Rough Layerでの分解能の減少係数                                                      |
+| Shift point/rate     | センサーから読み込んだ移動量がShift point以下のとき、カーソル移動量をShift rate倍する |
 | AML Enable     | QMKのAutomatic Mouse Layer機能の有効化                                               |
 | AML Layer      | AMLの移動先レイヤー                                                                  |
 | AML Timeout    | AMLのタイムアウト時間。単位はms                                                      |
