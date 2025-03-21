@@ -1,0 +1,189 @@
+name: トラブルシューティング
+description: 自作キーボードの問題を報告する
+title: "[トラブルシューティング]: "
+labels: ["troubleshooting"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 自作キーボードのトラブルシューティング
+        このテンプレートを使用して、キーボードの問題に関する情報を提供してください。
+
+  - type: dropdown
+    id: issue-category
+    attributes:
+      label: 問題のカテゴリ
+      description: 発生している問題のタイプを選択してください
+      options:
+        - 組み立て関連の問題
+        - 動作関連の問題
+    validations:
+      required: true
+
+  - type: conditional
+    if: "input.issue-category == '組み立て関連の問題'"
+    fields:
+      - type: dropdown
+        id: assembly-stage
+        attributes:
+          label: 組み立て段階
+          description: 問題が発生している組み立て段階を選択してください
+          options:
+            - PCBの準備
+            - スイッチの取り付け
+            - ケースの組み立て
+            - トラックボールの取り付け
+            - その他
+        validations:
+          required: true
+          
+      - type: checkboxes
+        id: assembly-checklist
+        attributes:
+          label: 確認事項
+          description: 該当する項目をチェックしてください
+          options:
+            - label: 部品が不足している
+            - label: 部品が破損している
+            - label: 手順書の指示が分かりにくい
+            - label: はんだ付けがうまくいかない
+            - label: 部品の取り付け位置が分からない
+            - label: ねじやスペーサーの取り付けに問題がある
+            - label: トラックボールの配置・取り付けに問題がある
+            - label: その他の組み立て問題
+          
+      - type: textarea
+        id: assembly-issue-description
+        attributes:
+          label: 問題の詳細
+          description: 組み立て中に発生した問題について詳しく説明してください
+          placeholder: 組み立て手順のどこで問題が発生しましたか？何が期待と違いましたか？
+        validations:
+          required: true
+
+  - type: conditional
+    if: "input.issue-category == '動作関連の問題'"
+    fields:
+      - type: dropdown
+        id: operation-issue-type
+        attributes:
+          label: 動作問題のタイプ
+          description: 発生している動作問題のタイプを選択してください
+          options:
+            - 電源の問題
+            - キー入力の問題
+            - トラックボールの問題
+            - 無線接続の問題
+            - その他
+        validations:
+          required: true
+          
+      - type: conditional
+        if: "input.operation-issue-type == '電源の問題'"
+        fields:
+          - type: checkboxes
+            id: power-issue-checklist
+            attributes:
+              label: 電源問題の確認事項
+              description: 当てはまる項目をチェックしてください
+              options:
+                - label: キーボードが全く電源が入らない
+                - label: 電源は入るが突然切れる
+                - label: バッテリーの持ちが極端に短い
+                - label: 充電ができない
+                - label: USB接続時のみ電源が入る
+                - label: LEDが点灯しない
+                - label: その他の電源関連の問題
+      
+      - type: conditional
+        if: "input.operation-issue-type == 'キー入力の問題'"
+        fields:
+          - type: checkboxes
+            id: key-input-issue-checklist
+            attributes:
+              label: キー入力問題の確認事項
+              description: 当てはまる項目をチェックしてください
+              options:
+                - label: 特定のキーが反応しない
+                - label: キーの反応が遅い
+                - label: キーが勝手に入力される（チャタリング）
+                - label: モディファイアキー（Shift, Ctrl等）が正常に動作しない
+                - label: レイヤー切り替えが正常に動作しない
+                - label: キーマッピングが期待通りに動作しない
+                - label: その他のキー入力関連の問題
+
+      - type: conditional
+        if: "input.operation-issue-type == 'トラックボールの問題'"
+        fields:
+          - type: checkboxes
+            id: trackball-issue-checklist
+            attributes:
+              label: トラックボール問題の確認事項
+              description: 当てはまる項目をチェックしてください
+              options:
+                - label: トラックボールが全く反応しない
+                - label: トラックボールの動きがスムーズでない
+                - label: カーソルの動きが不規則
+                - label: スクロール機能が正常に動作しない
+                - label: センサーが正常に認識されていない
+                - label: トラックボールのボタンが反応しない
+                - label: その他のトラックボール関連の問題
+
+      - type: conditional
+        if: "input.operation-issue-type == '無線接続の問題'"
+        fields:
+          - type: checkboxes
+            id: wireless-issue-checklist
+            attributes:
+              label: 無線接続問題の確認事項
+              description: 当てはまる項目をチェックしてください
+              options:
+                - label: ペアリングができない
+                - label: 接続が頻繁に切れる
+                - label: 接続の遅延が大きい
+                - label: 複数デバイスとの切り替えがうまくいかない
+                - label: Bluetooth接続モードに切り替わらない
+                - label: 無線接続時のみ特定の機能が動作しない
+                - label: その他の無線接続関連の問題
+          
+      - type: textarea
+        id: operation-issue-description
+        attributes:
+          label: 問題の詳細
+          description: 動作の問題について詳しく説明してください
+          placeholder: 問題はいつ発生しますか？どのような症状ですか？
+        validations:
+          required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: 再現手順
+      description: 問題を再現するための手順を記入してください
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 環境情報
+      description: キーボードの環境情報を記入してください
+      value: |
+        - ファームウェアバージョン:
+        - 接続方法（USB/Bluetooth/その他）:
+        - 接続しているデバイス（PC/Mac/その他）:
+        - OSとバージョン:
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: 追加情報
+      description: 問題解決に役立つ可能性のあるその他の情報や画像を添付してください
+    validations:
+      required: false
