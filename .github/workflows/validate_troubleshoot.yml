@@ -1,0 +1,105 @@
+name: トラブルシューティングの検証
+on:
+  issues:
+    types: [opened, edited]
+    
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Issueの内容を検証
+        env:
+          ISSUE_BODY: "${{ github.event.issue.body }}"
+        run: |
+          # 必須チェック項目の確認
+          if [[ "$ISSUE_BODY" != *"- [x] ビルドガイドの\`トラブルと対策\`の項目を熟読した"* ]]; then
+            gh issue comment ${{ github.event.issue.number }} --body "ビルドガイドの「トラブルと対策」の項目を熟読してからIssueを再度開いてください。"
+            gh issue close ${{ github.event.issue.number }} -r "not_planned"
+            exit 0
+          fi
+
+          # キット内容の問題のチェックと対応するトラブルシュート
+          if [[ "$ISSUE_BODY" == *"- [x] 部品が不足している"* ]] || \
+             [[ "$ISSUE_BODY" == *"- [x] 部品が破損している"* ]] || \
+             [[ "$ISSUE_BODY" == *"- [x] はんだ済みの部品に問題がある"* ]] || \
+             [[ "$ISSUE_BODY" == *"- [x] 組み立てに失敗したため、部品を追加購入したい"* ]]; then
+            gh issue comment ${{ github.event.issue.number }} --body "キット内容の問題はBOOTHで連絡してください。"
+            gh issue close ${{ github.event.issue.number }} -r "not_planned"
+            exit 0
+          fi
+
+          # ファームウェア書き込みの問題のチェックと対応するトラブルシュート
+          if [[ "$ISSUE_BODY" == *"- [x] ファームウェアが書き込めない"* ]]; then
+            if [[ "$ISSUE_BODY" != *"- [x] BMPのドキュメント、FAQを確認した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] BMPのブートローダーが起動しているかどうか確認した"* ]]; then
+              gh issue comment ${{ github.event.issue.number }} --body "ファームウェア書き込みの問題に関するトラブルシュートがすべて実施されていません。対応するトラブルシュートの項目をすべてチェックしてから再度Issueを開いてください。"
+              gh issue close ${{ github.event.issue.number }} -r "not_planned"
+              exit 0
+            fi
+          fi
+          
+          # 電源の問題のチェックと対応するトラブルシュート
+          if [[ "$ISSUE_BODY" == *"- [x] キーボードの電源が入らない"* ]]; then
+            if [[ "$ISSUE_BODY" != *"- [x] 電源ONの状態で、電池ボックスの-側とBMPの0番ピン(ランドが四角いピンの1個上)の電圧が1.9Vになっている"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] 電池ボックスとスイッチのはんだ付けを再確認した"* ]]; then
+              gh issue comment ${{ github.event.issue.number }} --body "電源の問題に関するトラブルシュートがすべて実施されていません。対応するトラブルシュートの項目をすべてチェックしてから再度Issueを開いてください。"
+              gh issue close ${{ github.event.issue.number }} -r "not_planned"
+              exit 0
+            fi
+          fi
+          
+          # キー入力の問題のチェックと対応するトラブルシュート
+          if [[ "$ISSUE_BODY" == *"- [x] 特定のキーが反応しない"* ]] || \
+             [[ "$ISSUE_BODY" == *"- [x] キーの反応が遅い"* ]]; then
+            if [[ "$ISSUE_BODY" != *"- [x] master側にキーマップが設定されていることをvialで確認した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] キースイッチの足が折れ曲がっていないか確認した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] コンスルーの足が折れ曲がっていないか確認した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] BMPを取り付け直した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] BMPを左右で入れ替えて、メインの基板とBMPのどちらに問題があるか絞りこんだ"* ]]; then
+              gh issue comment ${{ github.event.issue.number }} --body "キー入力の問題に関するトラブルシュートがすべて実施されていません。対応するトラブルシュートの項目をすべてチェックしてから再度Issueを開いてください。"
+              gh issue close ${{ github.event.issue.number }} -r "not_planned"
+              exit 0
+            fi
+          fi
+          
+          # トラックボールの問題のチェックと対応するトラブルシュート
+          if [[ "$ISSUE_BODY" == *"- [x] トラックボールがまったく反応しない"* ]] || \
+             [[ "$ISSUE_BODY" == *"- [x] トラックボールの動きがスムーズでない"* ]] || \
+             [[ "$ISSUE_BODY" == *"- [x] カーソルの動きが不規則"* ]]; then
+            if [[ "$ISSUE_BODY" != *"- [x] ケーブルの接続を再確認した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] センサーの取付位置を調整してみた"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] 組立中、ケースに取り付ける前にセンサーの動作確認を実施した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] トラックボールモジュールの仕様(最大速度24inch/s、最大加速度10G)について理解した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] スマホのカメラを起動してセンサーが発光しているか確認した"* ]]; then
+              gh issue comment ${{ github.event.issue.number }} --body "トラックボールの問題に関するトラブルシュートがすべて実施されていません。対応するトラブルシュートの項目をすべてチェックしてから再度Issueを開いてください。"
+              gh issue close ${{ github.event.issue.number }} -r "not_planned"
+              exit 0
+            fi
+          fi
+          
+          # ペアリングの問題のチェックと対応するトラブルシュート
+          if [[ "$ISSUE_BODY" == *"- [x] 両手とも無線で入力できない"* ]] || \
+             [[ "$ISSUE_BODY" == *"- [x] 片手（スレーブ側が無線で入力できない）"* ]]; then
+            if [[ "$ISSUE_BODY" != *"- [x] BMPのFAQを確認し、関連するトラブルシュートを実施した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] BMPのCLIで\`del\`コマンドでペアリングを削除してから再ペアリングした"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] BMPのCLIでデバッグログを表示しながらペアリングさせた"* ]]; then
+              gh issue comment ${{ github.event.issue.number }} --body "ペアリングの問題に関するトラブルシュートがすべて実施されていません。対応するトラブルシュートの項目をすべてチェックしてから再度Issueを開いてください。"
+              gh issue close ${{ github.event.issue.number }} -r "not_planned"
+              exit 0
+            fi
+          fi
+          
+          # 無線接続中の入力の問題のチェックと対応するトラブルシュート
+          if [[ "$ISSUE_BODY" == *"- [x] ペアリングができない"* ]] || \
+             [[ "$ISSUE_BODY" == *"- [x] 接続が頻繁に切れる、接続の遅延が大きい"* ]]; then
+            if [[ "$ISSUE_BODY" != *"- [x] ほかのデバイスに接続して動作確認した"* ]] || \
+               [[ "$ISSUE_BODY" != *"- [x] battery modeを変えて動作確認した"* ]]; then
+              gh issue comment ${{ github.event.issue.number }} --body "無線接続中の入力の問題に関するトラブルシュートがすべて実施されていません。対応するトラブルシュートの項目をすべてチェックしてから再度Issueを開いてください。"
+              gh issue close ${{ github.event.issue.number }} -r "not_planned"
+              exit 0
+            fi
+          fi
+          
+          echo "問題の分類とトラブルシュートの項目が正しくチェックされています。"
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
