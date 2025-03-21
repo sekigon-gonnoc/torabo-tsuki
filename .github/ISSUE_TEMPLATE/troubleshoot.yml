@@ -20,140 +20,123 @@ body:
     validations:
       required: true
 
-  - type: conditional
-    if: "input.issue-category == '組み立て関連の問題'"
-    fields:
-      - type: dropdown
-        id: assembly-stage
-        attributes:
-          label: 組み立て段階
-          description: 問題が発生している組み立て段階を選択してください
-          options:
-            - PCBの準備
-            - スイッチの取り付け
-            - ケースの組み立て
-            - トラックボールの取り付け
-            - その他
-        validations:
-          required: true
-          
-      - type: checkboxes
-        id: assembly-checklist
-        attributes:
-          label: 確認事項
-          description: 該当する項目をチェックしてください
-          options:
-            - label: 部品が不足している
-            - label: 部品が破損している
-            - label: 手順書の指示が分かりにくい
-            - label: はんだ付けがうまくいかない
-            - label: 部品の取り付け位置が分からない
-            - label: ねじやスペーサーの取り付けに問題がある
-            - label: トラックボールの配置・取り付けに問題がある
-            - label: その他の組み立て問題
-          
-      - type: textarea
-        id: assembly-issue-description
-        attributes:
-          label: 問題の詳細
-          description: 組み立て中に発生した問題について詳しく説明してください
-          placeholder: 組み立て手順のどこで問題が発生しましたか？何が期待と違いましたか？
-        validations:
-          required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## 問題の詳細
+        選択したカテゴリに応じて、以下の項目を入力してください。
 
-  - type: conditional
-    if: "input.issue-category == '動作関連の問題'"
-    fields:
-      - type: dropdown
-        id: operation-issue-type
-        attributes:
-          label: 動作問題のタイプ
-          description: 発生している動作問題のタイプを選択してください
-          options:
-            - 電源の問題
-            - キー入力の問題
-            - トラックボールの問題
-            - 無線接続の問題
-            - その他
-        validations:
-          required: true
-          
-      - type: conditional
-        if: "input.operation-issue-type == '電源の問題'"
-        fields:
-          - type: checkboxes
-            id: power-issue-checklist
-            attributes:
-              label: 電源問題の確認事項
-              description: 当てはまる項目をチェックしてください
-              options:
-                - label: キーボードが全く電源が入らない
-                - label: 電源は入るが突然切れる
-                - label: バッテリーの持ちが極端に短い
-                - label: 充電ができない
-                - label: USB接続時のみ電源が入る
-                - label: LEDが点灯しない
-                - label: その他の電源関連の問題
-      
-      - type: conditional
-        if: "input.operation-issue-type == 'キー入力の問題'"
-        fields:
-          - type: checkboxes
-            id: key-input-issue-checklist
-            attributes:
-              label: キー入力問題の確認事項
-              description: 当てはまる項目をチェックしてください
-              options:
-                - label: 特定のキーが反応しない
-                - label: キーの反応が遅い
-                - label: キーが勝手に入力される（チャタリング）
-                - label: モディファイアキー（Shift, Ctrl等）が正常に動作しない
-                - label: レイヤー切り替えが正常に動作しない
-                - label: キーマッピングが期待通りに動作しない
-                - label: その他のキー入力関連の問題
+  - type: checkboxes
+    id: assembly-issues
+    attributes:
+      label: 組み立て関連の問題（該当する場合のみチェック）
+      description: 組み立て中に発生した問題について、当てはまる項目をチェックしてください
+      options:
+        - label: PCBの準備に関する問題
+          description: PCBの取り扱いやはんだ付けの準備について
+        - label: スイッチの取り付けに関する問題
+          description: キースイッチのはんだ付けや取り付けについて
+        - label: ケースの組み立てに関する問題
+          description: ケースやプレートの組み立てについて
+        - label: トラックボールの取り付けに関する問題
+          description: トラックボールユニットの取り付けや配線について
+        - label: 部品が不足している
+          description: キットに含まれるべき部品が不足している場合
+        - label: 部品が破損している
+          description: 部品が破損していた、または組み立て中に破損した場合
+        - label: 手順書の指示が分かりにくい
+          description: 説明書やマニュアルの指示が不明確な場合
+        - label: はんだ付けがうまくいかない
+          description: はんだ付けの技術的な問題がある場合
+        - label: 部品の取り付け位置が分からない
+          description: 部品の配置や向きが不明な場合
+        - label: ねじやスペーサーの取り付けに問題がある
+          description: ねじやスペーサーの取り付けについて問題がある場合
 
-      - type: conditional
-        if: "input.operation-issue-type == 'トラックボールの問題'"
-        fields:
-          - type: checkboxes
-            id: trackball-issue-checklist
-            attributes:
-              label: トラックボール問題の確認事項
-              description: 当てはまる項目をチェックしてください
-              options:
-                - label: トラックボールが全く反応しない
-                - label: トラックボールの動きがスムーズでない
-                - label: カーソルの動きが不規則
-                - label: スクロール機能が正常に動作しない
-                - label: センサーが正常に認識されていない
-                - label: トラックボールのボタンが反応しない
-                - label: その他のトラックボール関連の問題
+  - type: checkboxes
+    id: operation-power-issues
+    attributes:
+      label: 電源関連の問題（該当する場合のみチェック）
+      description: 電源に関する問題について、当てはまる項目をチェックしてください
+      options:
+        - label: キーボードが全く電源が入らない
+          description: 電源が完全に入らない状態
+        - label: 電源は入るが突然切れる
+          description: 使用中に突然電源が切れる場合
+        - label: バッテリーの持ちが極端に短い
+          description: バッテリー駆動時間が予想より短い場合
+        - label: 充電ができない
+          description: バッテリーの充電ができない場合
+        - label: USB接続時のみ電源が入る
+          description: バッテリー駆動では動作せず、USB接続時のみ動作する場合
+        - label: LEDが点灯しない
+          description: 電源インジケータやバックライトが点灯しない場合
 
-      - type: conditional
-        if: "input.operation-issue-type == '無線接続の問題'"
-        fields:
-          - type: checkboxes
-            id: wireless-issue-checklist
-            attributes:
-              label: 無線接続問題の確認事項
-              description: 当てはまる項目をチェックしてください
-              options:
-                - label: ペアリングができない
-                - label: 接続が頻繁に切れる
-                - label: 接続の遅延が大きい
-                - label: 複数デバイスとの切り替えがうまくいかない
-                - label: Bluetooth接続モードに切り替わらない
-                - label: 無線接続時のみ特定の機能が動作しない
-                - label: その他の無線接続関連の問題
-          
-      - type: textarea
-        id: operation-issue-description
-        attributes:
-          label: 問題の詳細
-          description: 動作の問題について詳しく説明してください
-          placeholder: 問題はいつ発生しますか？どのような症状ですか？
-        validations:
-          required: true
+  - type: checkboxes
+    id: operation-key-issues
+    attributes:
+      label: キー入力関連の問題（該当する場合のみチェック）
+      description: キー入力に関する問題について、当てはまる項目をチェックしてください
+      options:
+        - label: 特定のキーが反応しない
+          description: 一部のキーが入力されない場合
+        - label: キーの反応が遅い
+          description: キー入力から実際の動作まで遅延がある場合
+        - label: キーが勝手に入力される（チャタリング）
+          description: 押していないキーが入力される、または1回の押下で複数回入力される場合
+        - label: モディファイアキー（Shift, Ctrl等）が正常に動作しない
+          description: 修飾キーが期待通りに動作しない場合
+        - label: レイヤー切り替えが正常に動作しない
+          description: キーレイヤーの切り替えが正しく機能しない場合
+        - label: キーマッピングが期待通りに動作しない
+          description: 設定したキーマップが反映されない場合
+
+  - type: checkboxes
+    id: operation-trackball-issues
+    attributes:
+      label: トラックボール関連の問題（該当する場合のみチェック）
+      description: トラックボールに関する問題について、当てはまる項目をチェックしてください
+      options:
+        - label: トラックボールが全く反応しない
+          description: トラックボールの動きが全く検出されない場合
+        - label: トラックボールの動きがスムーズでない
+          description: カーソル移動がぎこちない、または不規則な場合
+        - label: カーソルの動きが不規則
+          description: カーソルが予期しない方向に動く場合
+        - label: スクロール機能が正常に動作しない
+          description: トラックボールによるスクロールが機能しない場合
+        - label: センサーが正常に認識されていない
+          description: トラックボールセンサーの認識に問題がある場合
+        - label: トラックボールのボタンが反応しない
+          description: トラックボール関連のボタンが機能しない場合
+
+  - type: checkboxes
+    id: operation-wireless-issues
+    attributes:
+      label: 無線接続関連の問題（該当する場合のみチェック）
+      description: 無線接続に関する問題について、当てはまる項目をチェックしてください
+      options:
+        - label: ペアリングができない
+          description: デバイスとのペアリングが成功しない場合
+        - label: 接続が頻繁に切れる
+          description: 無線接続が不安定で頻繁に切断される場合
+        - label: 接続の遅延が大きい
+          description: 無線接続時にレイテンシーが大きい場合
+        - label: 複数デバイスとの切り替えがうまくいかない
+          description: 複数のデバイス間での切り替えに問題がある場合
+        - label: Bluetooth接続モードに切り替わらない
+          description: Bluetoothモードに切り替えることができない場合
+        - label: 無線接続時のみ特定の機能が動作しない
+          description: 無線接続時にのみ一部機能が動作しない場合
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: 問題の詳細説明
+      description: 上記でチェックした問題について、詳しく説明してください
+      placeholder: 問題の詳細、発生状況、試した対処法などを記入してください
+    validations:
+      required: true
 
   - type: textarea
     id: steps-to-reproduce
