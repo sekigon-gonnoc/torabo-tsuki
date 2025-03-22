@@ -48,8 +48,8 @@ jobs:
             fi
             
             # 必須チェック項目の確認
-            if [[ "$ISSUE_BODY" != *"- [x] ビルドガイドの\`トラブルと対策\`の項目を熟読した"* ]]; then
-              gh issue comment ${{ github.event.issue.number }} --body "ビルドガイドの`トラブルと対策`の項目を熟読したしてからIssueを再度開いてください。"
+            if [[ "$ISSUE_BODY" != *"- [x] ビルドガイドの'トラブルと対策'の項目を熟読した"* ]]; then
+              gh issue comment ${{ github.event.issue.number }} --body "ビルドガイドの'トラブルと対策'の項目を熟読したしてからIssueを再度開いてください。"
               gh issue close ${{ github.event.issue.number }} -r "not planned"
               exit 0
             fi
