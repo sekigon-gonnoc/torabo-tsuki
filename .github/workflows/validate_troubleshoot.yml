@@ -69,7 +69,7 @@ jobs:
             if [[ "$ISSUE_BODY" == *"- [x] ファームウェアが書き込めない"* ]] || \
                [[ "$ISSUE_BODY" == *"- [x] その他のファームウェア書き込みの問題"* ]]; then
               if [[ "$ISSUE_BODY" != *"- [x] BMPのドキュメント、FAQを確認した"* ]] || \
-                 [[ "$ISSUE_BODY" != *"- [x] BMPのブートローダーが起動しているかどうか確認した"* ]]; then
+                 [[ "$ISSUE_BODY" != *"- [x] BMPのブートローダーが起動しているかどうか、バージョン番号（ストレージのなかのversion.txt）を確認してからファームウェアを書き込んだ"* ]]; then
                 gh issue comment ${{ github.event.issue.number }} --body "ファームウェア書き込みの問題に関するトラブルシュートがすべて実施されていません。対応するトラブルシュートの項目をすべてチェックしてから再度Issueを開いてください。"
                 gh issue close ${{ github.event.issue.number }} -r "not planned"
                 exit 0
