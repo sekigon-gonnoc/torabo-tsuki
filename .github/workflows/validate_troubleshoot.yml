@@ -38,10 +38,10 @@ jobs:
             fi
             
             # 環境情報の入力確認
-            if [[ "$ISSUE_BODY" == *"- ファームウェアバージョン: "$'\n' ]] && \
-               [[ "$ISSUE_BODY" == *"- 接続方法（USB/Bluetooth/その他）: "$'\n' ]] && \
-               [[ "$ISSUE_BODY" == *"- 接続しているデバイス（PC/Mac/その他）: "$'\n' ]] && \
-               [[ "$ISSUE_BODY" == *"- OSとバージョン: "$'\n' ]]; then
+            if [[ "$ISSUE_BODY" == *"- ファームウェアバージョン:"$'\n' ]] && \
+               [[ "$ISSUE_BODY" == *"- 接続方法（USB/Bluetooth/その他）:"$'\n' ]] && \
+               [[ "$ISSUE_BODY" == *"- 接続しているデバイス（PC/Mac/その他）:"$'\n' ]] && \
+               [[ "$ISSUE_BODY" == *"- OSとバージョン:"$'\n' ]]; then
               gh issue comment ${{ github.event.issue.number }} --body "環境情報が入力されていません。接続方法やOS情報は問題解決に重要です。環境情報を追記の上、Issueを再度開いてください。"
               gh issue close ${{ github.event.issue.number }} -r "not planned"
               exit 0
