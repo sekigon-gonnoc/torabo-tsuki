@@ -330,6 +330,7 @@ Shift pointの調整のため現在のセンサーの値を知りたい場合は
 * ブートローダーv1.3.1以上にアップデートしてください。
 * https://sekigon-gonnoc.github.io/via-custom-ui-for-vial/ を使って、battery modeをstandardからperformance 1に変更してみてください。
 * performance 1にしても改善がみられない場合は、battery modeをcustom-standardまたはcustom-performance 1に変更してlatencyの値を小さく変更してみてください。
+* [ZMK版](https://github.com/sekigon-gonnoc/zmk-keyboard-torabo-tsuki)もお試しください。ZMK(zephyr)のプロトコルスタックはnordicのsoftdeviceより安定しているようです。
 
 ### 親指のキーが抜ける
 
